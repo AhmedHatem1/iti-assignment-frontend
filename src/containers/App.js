@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+
 import "./App.css";
+import ProductList from "../components/Products/product-list";
 import { products } from "../data";
 class App extends Component {
   constructor() {
@@ -9,13 +11,7 @@ class App extends Component {
     };
   }
   render() {
-    return (
-      <div>
-        <h1 className="btn btn-primary">
-          {this.state.products[0].ProductName}
-        </h1>
-      </div>
-    );
+    return <ProductList products={this.state.products} />;
   }
 }
 
