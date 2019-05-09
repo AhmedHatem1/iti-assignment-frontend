@@ -1,12 +1,22 @@
-import React from "react";
+import React, { Component } from "react";
 import "./App.css";
-
-function App() {
-  return (
-    <div>
-      <h1 className="btn btn-primary">Ahmed</h1>
-    </div>
-  );
+import { products } from "../data";
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      products
+    };
+  }
+  render() {
+    return (
+      <div>
+        <h1 className="btn btn-primary">
+          {this.state.products[0].ProductName}
+        </h1>
+      </div>
+    );
+  }
 }
 
 export default App;
