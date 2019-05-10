@@ -2,17 +2,24 @@ import React from "react";
 
 import ProductItem from "./Product/Product-item";
 const ProductList = props => {
+  const { EditClick, ViewImageClick } = props;
   const tableHeadlines = [
     "Image",
     "Product Name",
     "Price",
-    "Producer Company"
+    "Producer Company",
+    ""
   ].map(headline => {
-    return <th>{headline}</th>;
+    return <th key={headline}>{headline}</th>;
   });
 
   const tableData = props.products.map(product => (
-    <ProductItem product={product} />
+    <ProductItem
+      key={product.id}
+      product={product}
+      EditClick={EditClick}
+      ViewImageClick={ViewImageClick}
+    />
   ));
 
   return (
