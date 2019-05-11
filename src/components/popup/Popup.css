@@ -20,22 +20,24 @@
   word-wrap: break-word;
 }
 .message .close {
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  line-height: 20px;
+  border-radius: 50%;
   display: inline-block;
   text-align: center;
-  padding: 10px;
   position: absolute;
   top: 15px;
   right: 20px;
-  font-size: 20px;
-  color: #fff;
-  background-color: #3498db;
-  border-radius: 50%;
-  line-height: 10px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  transition: all 0.4s ease-in-out;
+  /* color: #fff; */
+  /* border-radius: 50%; */
+  /* background-color: #d9534f; */
+  /* line-height: 30px; */
+  /* cursor: pointer; */
+  /* transition: all 0.4s ease-in-out; */
 }
 
-.message .close:hover {
+/* .message .close:hover {
   background-color: #2980b9;
-}
+} */

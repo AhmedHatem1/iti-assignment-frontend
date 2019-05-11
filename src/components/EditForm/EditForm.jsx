@@ -46,8 +46,8 @@ const EditForm = props => {
 
       <div className="form-group d-flex justify-content-end">
         <div className="">
-          <input type="reset" className="btn btn-danger" />
-          <input type="submit" className="btn btn-primary" value="Save" />
+          <input type="reset" className="btn btn-outline-danger mx-1" />
+          <input type="submit" className="btn btn-info mx-1" value="Save" />
         </div>
       </div>
     </form>

@@ -10,20 +10,20 @@ const ProductItem = props => {
   } = props.product;
   return (
     <tr>
-      <td>
+      <td className="align-middle">
         <img
           src={ProductImage}
           alt={ProductName}
           title={ProductName}
-          className="img-fluid"
-          style={{ height: "50px" }}
+          className="img-fluid img-thumbnail"
+          style={{ height: "50px", cursor: "pointer" }}
           onClick={() => props.ViewImageClick(id)}
         />
       </td>
-      <td>{ProductName}</td>
-      <td>{Price}</td>
-      <td>{ProducerCompanyName}</td>
-      <td>
+      <td className="align-middle">{ProductName}</td>
+      <td className="align-middle">{Price}</td>
+      <td className="align-middle">{ProducerCompanyName}</td>
+      <td className="align-middle">
         <button className="btn btn-primary" onClick={() => props.EditClick(id)}>
           <i className="fa fa-pencil" /> Edit
         </button>

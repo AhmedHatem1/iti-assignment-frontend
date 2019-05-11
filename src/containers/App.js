@@ -33,7 +33,7 @@ class App extends Component {
   };
 
   onCloseClickHandler = () => {
-    this.setState({ isOpen: false });
+    this.setState({ isOpen: false, viewImage: false });
   };
   render() {
     const SelectedProduct = this.state.products[this.state.selectedProduct];

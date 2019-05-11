@@ -8,7 +8,7 @@ const ProductList = props => {
     "Product Name",
     "Price",
     "Producer Company",
-    ""
+    "Action"
   ].map(headline => {
     return <th key={headline}>{headline}</th>;
   });
@@ -23,7 +23,7 @@ const ProductList = props => {
   ));
 
   return (
-    <table className="table table-responsive table-striped table-hover w-100">
+    <table className="table table-hover">
       <thead className="thead-dark text-center">
         <tr>{tableHeadlines}</tr>
       </thead>
