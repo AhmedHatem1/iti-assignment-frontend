@@ -4,6 +4,7 @@ import "./App.css";
 import ProductList from "../components/Products/product-list";
 import Popup from "../components/popup/Popup";
 import EditForm from "../components/EditForm/EditForm";
+import ErrorBoundary from "../components/ErrorBoundary";
 import { products } from "../data";
 class App extends Component {
   constructor() {
@@ -38,11 +39,13 @@ class App extends Component {
     const SelectedProduct = this.state.products[this.state.selectedProduct];
     return (
       <div className="container">
-        <ProductList
-          products={this.state.products}
-          EditClick={this.onEditClickHandler}
-          ViewImageClick={this.onViewImageClickHandler}
-        />
+        <ErrorBoundary>
+          <ProductList
+            products={this.state.products}
+            EditClick={this.onEditClickHandler}
+            ViewImageClick={this.onViewImageClickHandler}
+          />
+        </ErrorBoundary>
 
         {this.state.isOpen && (
           <Popup CloseClick={this.onCloseClickHandler}>
@@ -54,7 +57,9 @@ class App extends Component {
                 className="img-fluid"
               />
             ) : (
-              <EditForm product={SelectedProduct} />
+              <ErrorBoundary>
+                <EditForm product={SelectedProduct} />
+              </ErrorBoundary>
             )}
           </Popup>
         )}
