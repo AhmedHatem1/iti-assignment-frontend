@@ -1,23 +1,17 @@
 import React from "react";
 const EditForm = props => {
-  const {
-    id,
-    ProductImage,
-    ProductName,
-    Price,
-    ProducerCompanyName
-  } = props.product;
+  const { name, price } = props.product;
   return (
     <form>
       <div className="form-group">
         <label htmlFor="productname">Product Name :</label>
         <input
           type="text"
-          name="productname"
+          name="name"
           id="productname"
           className="form-control"
           placeholder="Type The Product Name"
-          defaultValue={ProductName}
+          defaultValue={name}
         />
       </div>
 
@@ -29,7 +23,7 @@ const EditForm = props => {
           id="productprice"
           className="form-control"
           placeholder="Type The Product Price (EGP)"
-          defaultValue={Price}
+          defaultValue={price}
         />
       </div>
 

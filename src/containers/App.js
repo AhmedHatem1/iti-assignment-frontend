@@ -5,17 +5,27 @@ import ProductList from "../components/Products/product-list";
 import Popup from "../components/popup/Popup";
 import EditForm from "../components/EditForm/EditForm";
 import ErrorBoundary from "../components/ErrorBoundary";
-import { products } from "../data";
+import { domainName } from "../API/index";
+import { getProducts } from "../API/product";
+// import { products } from "../data";
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      products,
+      products: [],
       selectedProduct: 0,
       isOpen: false,
       viewImage: false
     };
   }
+
+  async componentDidMount() {
+    const response = await getProducts();
+    this.setState({
+      products: response
+    });
+  }
+
   onEditClickHandler = id => {
     const products = [...this.state.products];
     const productIndex = products.findIndex(product => product.id === id);
@@ -51,9 +61,9 @@ class App extends Component {
           <Popup CloseClick={this.onCloseClickHandler}>
             {this.state.viewImage ? (
               <img
-                src={SelectedProduct.ProductImage}
-                alt={SelectedProduct.ProductName}
-                title={SelectedProduct.ProductName}
+                src={domainName + "images/" + SelectedProduct.imageUrl}
+                alt={SelectedProduct.name}
+                title={SelectedProduct.name}
                 className="img-fluid"
               />
             ) : (
