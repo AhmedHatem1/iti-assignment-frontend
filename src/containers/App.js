@@ -3,16 +3,18 @@ import React, { Component } from "react";
 import "./App.css";
 import ProductList from "../components/Products/product-list";
 import Popup from "../components/popup/Popup";
-import EditForm from "../components/EditForm/EditForm";
+import EditForm from "./EditForm/EditForm";
 import ErrorBoundary from "../components/ErrorBoundary";
 import { domainName } from "../API/index";
 import { getProducts } from "../API/product";
+import { getCompanies } from "../API/company";
 // import { products } from "../data";
 class App extends Component {
   constructor() {
     super();
     this.state = {
       products: [],
+      companies: [],
       selectedProduct: 0,
       isOpen: false,
       viewImage: false
@@ -20,10 +22,13 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    const response = await getProducts();
+    const products = await getProducts();
+    const companies = await getCompanies();
     this.setState({
-      products: response
+      products,
+      companies
     });
+    console.log(this.state.companies);
   }
 
   onEditClickHandler = id => {
@@ -68,7 +73,10 @@ class App extends Component {
               />
             ) : (
               <ErrorBoundary>
-                <EditForm product={SelectedProduct} />
+                <EditForm
+                  product={SelectedProduct}
+                  companies={this.state.companies}
+                />
               </ErrorBoundary>
             )}
           </Popup>
