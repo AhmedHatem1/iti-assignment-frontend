@@ -8,7 +8,7 @@ import ErrorBoundary from "../components/ErrorBoundary";
 import { domainName } from "../API/index";
 import { getProducts } from "../API/product";
 import { getCompanies } from "../API/company";
-// import { products } from "../data";
+
 class App extends Component {
   constructor() {
     super();
@@ -60,6 +60,11 @@ class App extends Component {
             EditClick={this.onEditClickHandler}
             ViewImageClick={this.onViewImageClickHandler}
           />
+          {this.state.products.length <= 0 && (
+            <h2 className="text-center p-3">
+              <i className="fa fa-spinner fa-spin fa-3x fa-fw" />
+            </h2>
+          )}
         </ErrorBoundary>
 
         {this.state.isOpen && (

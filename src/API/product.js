@@ -5,5 +5,5 @@ export function getProducts() {
 }
 
 export function editProduct(id, product) {
-  return axiosBase.put(`products/${id}`, product).then(res => res.data);
+  return axiosBase.put(`/Products/${id}`, product).then(res => res.data);
 }

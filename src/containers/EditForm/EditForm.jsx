@@ -4,58 +4,45 @@ import { domainName } from "../../API";
 import { editProduct } from "../../API/product";
 class EditForm extends Component {
   state = {
-    formData: {
-      photo: {
-        value: ""
-      },
-      name: {
-        value: ""
-      },
-      price: {
-        value: ""
-      },
-      companyname: {
-        value: ""
-      }
-    }
+    id: "",
+    name: "",
+    price: "",
+    companyName: "",
+    oldphotopath: "",
+    photo: ""
   };
 
-  async componentDidMount() {
-    const product = await editProduct(this.props.product.id);
-    console.log(product);
-    delete product.id;
-    const obj = {
-      formData: {}
+  onSubmitHandler = async e => {
+    e.preventDefault();
+    e.persist();
+    const product = {
+      name: e.target.elements[3].value,
+      price: e.target.elements[4].value,
+      companyName: e.target.elements[5].value,
+      id: e.target.elements[1].value,
+      oldphotopath: e.target.elements[0].value,
+      photo: e.target.elements[2].value
     };
-    for (let key in product) {
-      obj.formData[key] = {
-        value: product[key]
-      };
-    }
-    this.setState(obj);
-  }
+    console.log(product);
+    var bodyFormData = new FormData();
+    bodyFormData.set("name", product.name);
+    bodyFormData.set("price", product.price);
+    bodyFormData.set("companyName", product.companyName);
+    bodyFormData.set("id", product.id);
+    bodyFormData.set("oldphotopath", product.oldphotopath);
+    bodyFormData.set("photo", product.photo);
 
-  onSubmitHandler = async () => {
-    this.setState({
-      ...this.state
-    });
-
-    let product = {};
-
-    for (let key in this.state.formData) {
-      product[key] = this.state.formData[key].value;
-    }
-    await editProduct(this.props.product.id, product);
+    await editProduct(product.id, bodyFormData);
   };
 
   render() {
     const { id, name, price, imageUrl } = this.props.product;
 
     return (
-      <form>
+      <form onSubmit={this.onSubmitHandler}>
         <input
           type="hidden"
-          name="image"
+          name="oldphotopath"
           id="image"
           className="form-control"
           value={imageUrl}
@@ -69,7 +56,7 @@ class EditForm extends Component {
             }}
             onClick={this.imageClickHandler}
           />
-          <input type="file" name="image" id="image" className="form-control" />
+          <input type="file" name="photo" id="image" className="form-control" />
         </div>
 
         <div className="form-group">
@@ -81,6 +68,7 @@ class EditForm extends Component {
             className="form-control"
             placeholder="Type The Product Name"
             defaultValue={name}
+            required
           />
         </div>
 
@@ -93,12 +81,13 @@ class EditForm extends Component {
             className="form-control"
             placeholder="Type The Product Price (EGP)"
             defaultValue={price}
+            required
           />
         </div>
 
         <div className="form-group">
           <label htmlFor="company">Select Company Producer :</label>
-          <select name="companyname" id="company" className="form-control">
+          <select name="companyName" id="company" className="form-control">
             {this.props.companies.map((company, index) => (
               <option value={company.name} key={index}>
                 {company.name}
